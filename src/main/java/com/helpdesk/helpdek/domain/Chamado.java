@@ -1,22 +1,38 @@
 package com.helpdesk.helpdek.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.helpdesk.helpdek.domain.enums.Prioridade;
 import com.helpdesk.helpdek.domain.enums.Status;
+import jakarta.persistence.*;
 import org.springframework.cglib.core.Local;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+@Entity
+public class Chamado implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-public class Chamado {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataAbertura = LocalDate.now();
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento = LocalDate.now();
+
     private Prioridade prioridade;
     private Status status;
     private String titulo;
     private String observacoes;
 
+    @ManyToOne
+    @JoinColumn(name="tenico_id")
     private Tecnico tecnico;
+    @ManyToOne // muitos chamados para um cliente
+    @JoinColumn(name="cliente_id")
     private Cliente cliente;
 
     public Chamado() {

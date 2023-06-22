@@ -1,22 +1,36 @@
 package com.helpdesk.helpdek.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.helpdesk.helpdek.domain.enums.Perfil;
+import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public abstract class Pessoa {
+@Entity //pode passar um parametro name = nome da tabela que quer que cria no banco
+public abstract class Pessoa implements Serializable {
+    private static final long serialVersionUID = 1L;
     //protected todas as classes filhas tem acesso aos atributos
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
     protected String nome;
+
+    @Column(unique = true)
     protected String cpf;
+    @Column(unique = true)
     protected String email;
     protected String senha;
+    @ElementCollection(fetch = FetchType.EAGER) // coleção e quando buscar usuario no banco, vai vir a lista de perfis
+    @CollectionTable(name="PERFIS")
     protected Set<Integer> perfis = new HashSet<>(); // set não permite dois valores iguais | HashSet não permite nulo
+
+    @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriacao = LocalDate.now();
 
     public Pessoa() {
