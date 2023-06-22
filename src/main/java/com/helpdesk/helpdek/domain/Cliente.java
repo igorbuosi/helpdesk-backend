@@ -1,5 +1,6 @@
 package com.helpdesk.helpdek.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.helpdesk.helpdek.domain.enums.Perfil;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -12,6 +13,7 @@ import java.util.List;
 public class Cliente extends Pessoa{
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente") // um cliente para muitos chamados
     private List<Chamado> chamados = new ArrayList<>();
 

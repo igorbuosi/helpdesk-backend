@@ -1,5 +1,6 @@
 package com.helpdesk.helpdek.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.helpdesk.helpdek.domain.enums.Perfil;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -10,6 +11,7 @@ import java.util.List;
 public class Tecnico extends Pessoa{
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore //ignora quando trazer o tecnico
     @OneToMany(mappedBy = "tecnico") // um tecnico para muitos chamados
     private List<Chamado> chamados = new ArrayList<>();
 
