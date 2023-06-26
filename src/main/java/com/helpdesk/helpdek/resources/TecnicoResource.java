@@ -3,6 +3,7 @@ package com.helpdesk.helpdek.resources;
 import com.helpdesk.helpdek.domain.Tecnico;
 import com.helpdesk.helpdek.domain.dtos.TecnicoDTO;
 import com.helpdesk.helpdek.services.TecnicoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class TecnicoResource {
     }
 
     @PostMapping
-    public ResponseEntity<TecnicoDTO> create(@RequestBody TecnicoDTO objDto){
+    public ResponseEntity<TecnicoDTO> create(@Valid @RequestBody TecnicoDTO objDto){
         Tecnico newObj = tecnicoService.create(objDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
         return ResponseEntity.created(uri).build();
