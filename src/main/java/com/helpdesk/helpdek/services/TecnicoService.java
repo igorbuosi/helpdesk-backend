@@ -37,6 +37,15 @@ public class TecnicoService {
         return tecnicoRepository.save(newObj);
     }
 
+    public Tecnico update(Integer id, TecnicoDTO objDTO) {
+        objDTO.setId(id);
+        Tecnico oldObj = findById(id);
+        validaporCpfEEmail(objDTO);
+        oldObj = new Tecnico(objDTO);
+        return tecnicoRepository.save(oldObj);
+
+    }
+
     private void validaporCpfEEmail(TecnicoDTO objDto) {
         Optional<Pessoa> obj = pessoaRepository.findByCpf(objDto.getCpf());
 
@@ -50,4 +59,6 @@ public class TecnicoService {
             throw new DataIntegrityViolationException("E-mail já cadastrado no sistema");
         }
     }
+
+
 }
