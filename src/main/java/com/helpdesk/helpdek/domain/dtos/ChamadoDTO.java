@@ -5,6 +5,7 @@ import com.helpdesk.helpdek.domain.Chamado;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -21,11 +22,17 @@ public class ChamadoDTO implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento = LocalDate.now();
 
+    @NotNull(message = "O campo prioridade é obrigatório")
     private Integer prioridade;
+    @NotNull(message = "O campo status é obrigatório")
     private Integer status;
+    @NotNull(message = "O campo titulo é obrigatório")
     private String titulo;
+    @NotNull(message = "O campo observaçoes é obrigatório")
     private String observacoes;
+    @NotNull(message = "O campo tecnico é obrigatório")
     private Integer tecnico;
+    @NotNull(message = "O campo cliente é obrigatório")
     private Integer cliente;
     private String nomeTecnico;
     private String nomeCliente;
