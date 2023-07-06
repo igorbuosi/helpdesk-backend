@@ -2,13 +2,12 @@ package com.helpdesk.helpdek.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.helpdesk.helpdek.domain.enums.Perfil;
-import jakarta.persistence.*;
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 

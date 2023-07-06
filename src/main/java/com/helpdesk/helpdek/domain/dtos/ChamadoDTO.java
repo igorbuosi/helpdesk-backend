@@ -2,11 +2,9 @@ package com.helpdesk.helpdek.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.helpdesk.helpdek.domain.Chamado;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 

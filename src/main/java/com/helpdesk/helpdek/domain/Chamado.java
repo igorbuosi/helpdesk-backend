@@ -3,9 +3,8 @@ package com.helpdesk.helpdek.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.helpdesk.helpdek.domain.enums.Prioridade;
 import com.helpdesk.helpdek.domain.enums.Status;
-import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
